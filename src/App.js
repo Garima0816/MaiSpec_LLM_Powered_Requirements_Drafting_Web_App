@@ -674,7 +674,7 @@ export default function App() {
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      const nice = (reqJson?.title || "requirements").replace(/[^\w\-]+/g, "_");
+      const nice = (reqJson?.title || "requirements").replace(/[^\w-]+/g, "_");
       a.href = url;
       a.download = `${nice}.pdf`;
       a.click();
@@ -700,7 +700,7 @@ export default function App() {
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      const nice = (reqJson?.title || "requirements").replace(/[^\w\-]+/g, "_");
+      const nice = (reqJson?.title || "requirements").replace(/[^\w-]+/g, "_");
       a.href = url;
       a.download = `${nice}.docx`;
       a.click();
