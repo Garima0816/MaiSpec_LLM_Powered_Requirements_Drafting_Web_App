@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# MaiSpec
+MaiSpec is a browser-based requirements management tool that helps users generate, edit, and export requirements.  
+It consists of a *React frontend* and a *FastAPI backend*.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Prerequisites
 
-## Available Scripts
+installed:
 
-In the project directory, you can run:
+- [Python 3.10+](https://www.python.org/)  
+- [Node.js & npm](https://nodejs.org/)  
+- [pip](https://pip.pypa.io/) or [Poetry](https://python-poetry.org/)  
 
-### `npm start`
+##  Project Structure
+ New Folder/
+├── backend/ 
+│ ├── main.py # Entry point for API
+│ ├── routers/ # API routes
+│ ├── services/ # Business logic (LLM, generation, exporting)
+│ ├── exporters/ # PDF, DOCX, Markdown export
+│ └── utils/ # Helper modules
+│
+├── frontend/ # React frontend
+│ ├── src/ # React components, pages, services
+│ └── public/ # Static assets
+│
+└── README.md
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Backend Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Navigate to the backend folder:
+   ```bash
+   cd backend
 
-### `npm test`
+Create a virtual environment:
+python -m venv venv
+venv\Scripts\activate     
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install dependencies:
+pip install -r requirements.txt
 
-### `npm run build`
+Start the FastAPI server:
+uvicorn main:app --reload
+Backend will run at: http://localhost:8000
+Frontend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Navigate to the frontend folder:
+cd frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies:
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start the development server:
+npm start
+Frontend will run at: http://localhost:3000
 
-### `npm run eject`
+ How to Use
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Start both backend (FastAPI) and frontend (React) servers.
+Open the app in your browser at http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Enter or dictate requirements.
+The system will generate structured requirements using LLM.
+Edit requirements directly in the browser.
+Export requirements as PDF, DOCX, or Markdown.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Production Build
+To build the frontend for production:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+cd frontend
+npm run build
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Serve the built files with a static server or integrate them with the backend.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Troubleshooting
 
-### Code Splitting
+If the backend does not start, ensure all Python dependencies are installed.
+If the frontend fails, try removing node_modules and reinstalling:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+rm -rf node_modules package-lock.json
+npm install
